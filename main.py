@@ -1,53 +1,71 @@
+
 import turtle as trtl
 import random as rand
-
-trtl.speed(0)
-wn = trtl.Screen()
-wn.bgcolor("black")
-#-------------------maze and turtle config variables-----------------
-screen_h = 400
-screen_w = 420
-startx = 0
-starty = 0
-turtle_scale = 1.5
-
-#---------------------------GHOST COMMANDS---------------------------
-#------ red ghost commands
-
-#----- init screen
-
-trtl.setup(width=screen_w, height=screen_h)
-HuTao_image = "HuTao.gif"
-trtl.addshape(HuTao_image)
-
-#----- init ghost
-hutao = trtl.Turtle(shape=HuTao_image)
-hutao.hideturtle()
-hutao.pencolor("red")
-hutao.penup()
-hutao.setheading(90)
-hutao.turtlesize(turtle_scale, turtle_scale)
-hutao.goto(0, 0)
-hutao.speed(2)
-hutao.showturtle()
-
-#-----game functions--------
  
+#-----game configuration----
+scolor = "red"
+s = "circle"
+ssize = 1
+score = 0
+font_setup = ("Times",20,"normal")
+timer = 5
+counter_interval = 1000
+timer_up = False
+ 
+#-----initialize turtle-----
+sturt = trtl.Turtle()
+sturt.speed(0)
+sturt.shape(s)
+sturt.color(scolor)
+sturt.shapesize(ssize)
+sturt.penup()
+score_writer = trtl.Turtle()
+score_writer.hideturtle()
+score_writer.pu()
+score_writer.goto(-180,140)
+ 
+counter = trtl.Turtle()
+#-----game functions--------
+def update_score():
+  global score
+  score+=1
+  score_writer.clear()
+  score_writer.write(score,font=font_setup)
+ 
+def countdown():
+  global timer, timer_up
+  counter.clear()
+  if timer <= 0:
+    counter.penup()
+    counter.goto(-50,50)
+    counter.hideturtle()
+    counter.write("Time's Up", font=font_setup)
+    timer_up = True
+  else:
+    counter.penup()
+    counter.goto(-50,50)
+    counter.hideturtle()
+    counter.write("Timer: " + str(timer), font=font_setup)
+    timer -= 1
+    counter.getscreen().ontimer(countdown, counter_interval)
+ 
+def s_clicked(x, y):
+  change_position()
+  update_score()
  
 def change_position():
   new_xpos = rand.randint(-200, 200)
   new_ypos = rand.randint(-150, 150)
-  hutao.hideturtle()
-  hutao.goto(new_xpos, new_ypos)
-  hutao.showturtle()
+  sturt.hideturtle()
+  sturt.goto(new_xpos, new_ypos)
+  sturt.showturtle()
  
-def s_clicked(x, y):
-  change_position()
  
 #-----events----------------
-hutao.penup()
-hutao.onclick(s_clicked)
+sturt.penup()
+sturt.onclick(s_clicked)
  
  
 wn = trtl.Screen()
+wn.ontimer(countdown, counter_interval)
 wn.mainloop()
