@@ -1,11 +1,16 @@
 
 import turtle as trtl
 import random as rand
- 
+from turtle import Screen, Turtle
+
 #-----game configuration----
-scolor = "red"
-s = "circle"
-ssize = 1
+hu_tao = trtl.Turtle()
+wn = trtl.Screen()
+wn.bgcolor("grey")
+smug = "HuTao.webp-2.gif"
+screen = Screen()
+screen.addshape(smug)
+HuTao = Turtle(smug)
 score = 0
 font_setup = ("Times",20,"normal")
 timer = 5
@@ -13,12 +18,8 @@ counter_interval = 1000
 timer_up = False
  
 #-----initialize turtle-----
-sturt = trtl.Turtle()
-sturt.speed(0)
-sturt.shape(s)
-sturt.color(scolor)
-sturt.shapesize(ssize)
-sturt.penup()
+HuTao.speed(0)
+HuTao.penup()
 score_writer = trtl.Turtle()
 score_writer.hideturtle()
 score_writer.pu()
@@ -56,16 +57,15 @@ def s_clicked(x, y):
 def change_position():
   new_xpos = rand.randint(-200, 200)
   new_ypos = rand.randint(-150, 150)
-  sturt.hideturtle()
-  sturt.goto(new_xpos, new_ypos)
-  sturt.showturtle()
+  HuTao.hideturtle()
+  HuTao.goto(new_xpos, new_ypos)
+  HuTao.showturtle()
  
  
 #-----events----------------
-sturt.penup()
-sturt.onclick(s_clicked)
- 
- 
+HuTao.penup()
+score_writer.hideturtle()
+counter.hideturtle()
+HuTao.onclick(s_clicked)
 wn = trtl.Screen()
-wn.ontimer(countdown, counter_interval)
 wn.mainloop()
