@@ -4,7 +4,6 @@ import random as rand
 from turtle import Screen, Turtle
 
 #-----game configuration----
-hu_tao = trtl.Turtle()
 wn = trtl.Screen()
 wn.bgcolor("grey")
 smug = "HuTao.webp-2.gif"
@@ -31,20 +30,26 @@ def update_score():
   global score
   score+=1
   score_writer.clear()
+  score_writer.color("Red")
   score_writer.write(score,font=font_setup)
+  HuTao.clear()
+  HuTao.color("White")
+  HuTao.write("Yahooo!",font=font_setup)
+
  
 def countdown():
   global timer, timer_up
   counter.clear()
   if timer <= 0:
     counter.penup()
-    counter.goto(-50,50)
+    counter.goto(150,150)
     counter.hideturtle()
     counter.write("Time's Up", font=font_setup)
     timer_up = True
+    HuTao.hideturtle()
   else:
     counter.penup()
-    counter.goto(-50,50)
+    counter.goto(150,150)
     counter.hideturtle()
     counter.write("Timer: " + str(timer), font=font_setup)
     timer -= 1
@@ -53,6 +58,7 @@ def countdown():
 def s_clicked(x, y):
   change_position()
   update_score()
+  print("Yahoooo")
  
 def change_position():
   new_xpos = rand.randint(-200, 200)
@@ -64,8 +70,8 @@ def change_position():
  
 #-----events----------------
 HuTao.penup()
-score_writer.hideturtle()
 counter.hideturtle()
+countdown()
 HuTao.onclick(s_clicked)
 wn = trtl.Screen()
 wn.mainloop()
