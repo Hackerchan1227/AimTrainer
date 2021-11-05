@@ -59,9 +59,8 @@ def s_clicked(x, y):
   change_position()
   update_score()
   print("Yahoooo")
- 
 def change_position():
-  new_xpos = rand.randint(-200, 200)
+  new_xpos = rand.randint(-150, 150)
   new_ypos = rand.randint(-150, 150)
   HuTao.hideturtle()
   HuTao.goto(new_xpos, new_ypos)
