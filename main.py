@@ -5,7 +5,7 @@ from turtle import Screen, Turtle
 
 #-----game configuration----
 wn = trtl.Screen()
-wn.bgcolor("grey")
+wn.bgpic("Wuwan Hill.png")
 smug = "HuTao.webp-2.gif"
 screen = Screen()
 screen.addshape(smug)
@@ -36,7 +36,7 @@ def update_score():
   HuTao.color("White")
   HuTao.write("Yahooo!",font=font_setup)
 
- 
+counter.color("White")
 def countdown():
   global timer, timer_up
   counter.clear()
@@ -45,6 +45,8 @@ def countdown():
     counter.goto(150,150)
     counter.hideturtle()
     counter.write("Time's Up", font=font_setup)
+    counter.goto(120,120)
+    counter.write("You lost the 50/50 lol.", font=font_setup)
     timer_up = True
     HuTao.hideturtle()
   else:
@@ -59,6 +61,7 @@ def s_clicked(x, y):
   change_position()
   update_score()
   print("Yahoooo")
+ 
 def change_position():
   new_xpos = rand.randint(-150, 150)
   new_ypos = rand.randint(-150, 150)
