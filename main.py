@@ -1,8 +1,9 @@
 
 import turtle as trtl
 import random as rand
+from replit import audio
 from turtle import Screen, Turtle
-
+source = audio.play_file("let_the_living_beware.mp3")
 #-----game configuration----
 wn = trtl.Screen()
 wn.bgpic("Wuwan Hill.png")
@@ -12,7 +13,7 @@ screen.addshape(smug)
 HuTao = Turtle(smug)
 score = 0
 font_setup = ("Times",20,"normal")
-timer = 5
+timer = 30
 counter_interval = 1000
 timer_up = False
  
@@ -47,6 +48,7 @@ def countdown():
     counter.write("Time's Up", font=font_setup)
     counter.goto(120,120)
     counter.write("You lost the 50/50 lol.", font=font_setup)
+    source = audio.play_file("Genshin Impact.mp3")
     timer_up = True
     HuTao.hideturtle()
   else:
@@ -60,6 +62,7 @@ def countdown():
 def s_clicked(x, y):
   change_position()
   update_score()
+  source = audio.play_file("hu_tao.mp3")
   print("Yahoooo")
  
 def change_position():
